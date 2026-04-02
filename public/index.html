@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0b1826" />
+    <title>Mobile LAN Shooter</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="hud" class="hud">
+      <button
+        id="hudToggle"
+        class="hud-toggle"
+        type="button"
+        aria-controls="hudDrawer"
+        aria-expanded="false"
+      >
+        HUD
+      </button>
+
+      <aside id="hudDrawer" class="hud-drawer" aria-hidden="true">
+        <div class="hud__top hud__top--drawer">
+          <div id="statusPill" class="pill">Connecting</div>
+          <div id="networkHint" class="network-hint">Scanning local network address...</div>
+        </div>
+
+        <div class="hud__cards">
+          <div class="hud__card hud__card--score">
+            <div class="hud__label">Score</div>
+            <div id="scoreValue" class="hud__value hud__value--big">0</div>
+            <div id="kdValue" class="hud__subvalue">0 K / 0 D</div>
+            <div id="weaponValue" class="hud__subvalue hud__subvalue--weapon">
+              Pistol | steady fire
+            </div>
+          </div>
+
+          <div class="hud__card hud__card--leaderboard">
+            <div class="hud__label">Leaderboard</div>
+            <div id="leaderboard" class="leaderboard"></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div id="killfeed" class="killfeed"></div>
+    <div id="announcement" class="announcement hidden"></div>
+    <div id="respawnOverlay" class="respawn hidden"></div>
+
+    <div id="startOverlay" class="overlay">
+      <div class="overlay__card">
+        <p class="eyebrow">LAN Arena</p>
+        <h1>Mobile Arena Shootout</h1>
+        <p class="overlay__copy">
+          Left thumb moves. Right thumb aims and fires. Desktop also supports
+          <strong>WASD + mouse</strong>.
+        </p>
+
+        <form id="joinForm" class="join-form">
+          <input
+            id="nameInput"
+            name="name"
+            maxlength="16"
+            placeholder="Your pilot name"
+            autocomplete="nickname"
+          />
+          <button id="joinButton" type="submit">Enter Arena</button>
+        </form>
+
+        <div class="overlay__tips">
+          <span>Health packs stay in play, and shotguns return every 30 seconds.</span>
+          <span>Use the same Wi-Fi address below on every phone.</span>
+        </div>
+
+        <div id="shareBox" class="share-box">Preparing your local network link...</div>
+      </div>
+    </div>
+  </body>
+</html>
